@@ -1,0 +1,22 @@
+client-id: unprotectedapp
+client-secret: 56c245fb-5e7a-4fff-b273-9516924c50c3
+discovery-url: http://vault1:8080/auth/realms/master
+enable-default-deny: true
+secure-cookie: false
+encryption_key: AgXa7xRcoClDEU0ZDSH4X0XhL5Qy2Z2j
+listen: 0.0.0.0:3000
+forbidden-page: /opt/noaccess.html
+redirection-url: http://vault1:3000/
+upstream-url: http://demo.robustperception.io:9090/
+resources:
+- uri: /*
+  roles:
+  - appadmin
+- uri: /public/*
+  white-listed: true
+- uri: /favicon
+  white-listed: true
+- uri: /css/*
+  white-listed: true
+- uri: /img/*
+  white-listed: true
