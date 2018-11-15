@@ -1,0 +1,101 @@
+{
+    "clientId": "urn:amazon:webservices",
+    "baseUrl": "/auth/realms/master/protocol/saml/clients/amazon-aws",
+    "surrogateAuthRequired": false,
+    "enabled": true,
+    "clientAuthenticatorType": "client-secret",
+    "redirectUris": [
+        "https://signin.aws.amazon.com/saml"
+    ],
+    "webOrigins": [
+        "https://signin.aws.amazon.com"
+    ],
+    "notBefore": 0,
+    "bearerOnly": false,
+    "consentRequired": false,
+    "standardFlowEnabled": true,
+    "implicitFlowEnabled": false,
+    "directAccessGrantsEnabled": false,
+    "serviceAccountsEnabled": false,
+    "publicClient": false,
+    "frontchannelLogout": true,
+    "protocol": "saml",
+    "attributes": {
+        "saml.assertion.signature": "true",
+        "saml.force.post.binding": "true",
+        "saml.multivalued.roles": "false",
+        "saml.encrypt": "false",
+        "login_theme": "keycloak",
+        "saml_assertion_consumer_url_post": "https://signin.aws.amazon.com/saml",
+        "saml.server.signature": "true",
+        "saml_idp_initiated_sso_url_name": "amazon-aws",
+        "saml.server.signature.keyinfo.ext": "false",
+        "exclude.session.state.from.auth.response": "false",
+        "saml.signing.certificate": "MIIDbTCCAlWgAwIBAgIET+b8mTANBgkqhkiG9w0BAQsFADBnMR8wHQYDVQQDExZ1cm46YW1hem9uOndlYnNlcnZpY2VzMSIwIAYDVQQKExlBbWF6b24gV2ViIFNlcnZpY2VzLCBJbmMuMRMwEQYDVQQIEwpXYXNoaW5ndG9uMQswCQYDVQQGEwJVUzAeFw0xODEwMDEwMDAwMDBaFw0xOTEwMDEwMDAwMDBaMGcxHzAdBgNVBAMTFnVybjphbWF6b246d2Vic2VydmljZXMxIjAgBgNVBAoTGUFtYXpvbiBXZWIgU2VydmljZXMsIEluYy4xEzARBgNVBAgTCldhc2hpbmd0b24xCzAJBgNVBAYTAlVTMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqi+bdL+COkCFRqqB+pQNNbyIKDpn+425OTaPMqZYRCGwcaARAj+gehn/qEMTz6CzARhQ/aekmtVqf9baLbGFzEDgcfcYkipJjUEleDJ1J35EikiQCS1VZc/e09Bh2CnD5nRZqK9ftvpw2PeDFOFoET4o/TXFWKo/oCm/eWEfIBx4lkwqBapG4cbDa98vzoK9mEkkiY2CJUWDmSRx8L5oHp6aI/knonvbKMOq0X7XWUcxlSk7R7kFwtzLgvp/6JDrSILOaXfQr9St82pVH+OsLPU+hOY9eJaiekYPc22WlMKJ8jT0BF7gsR2ASE9Ee2JQf/1UU7rpx4Y0w9kSH5V0rQIDAQABoyEwHzAdBgNVHQ4EFgQUT6a3g7OjcYYBXPTwmvnNYiT8lVYwDQYJKoZIhvcNAQELBQADggEBAECq6txWuVMJvC5AlJStdLUteU3HPlUwEIYxJBr1YxsJOFVTOVw4EkaOfezEWCMem03/xscSB8VoxXgKhGNWlKSpmOciZdIUDR8ZA7qK0M6mqDM3qxj9R3sNkiwv4edm3UbwITrLdprnWKZ8bIv++wqvqUZHaf/2/x0qoH/6VdMWZxFCetcz+YM3QPEUPn2F0tr6p6bVyK86kK2E6Dvppv7wxfdLnjO+8R/c1eQQMnWlR9znPEnv5HDIgl6Etn6PAEk+iLf+AkkVukf66mRJyTXYnN7LyQsmALNxhNnPNFzUHxu7XJHf81IBkEbWV+68Rr/c3IAYmUPssWs67rq/m40=",
+        "saml.signature.algorithm": "RSA_SHA256",
+        "saml_force_name_id_format": "false",
+        "saml.client.signature": "true",
+        "tls.client.certificate.bound.access.tokens": "false",
+        "saml.authnstatement": "true",
+        "display.on.consent.screen": "false",
+        "saml_name_id_format": "persistent",
+        "saml.onetimeuse.condition": "false",
+        "saml_signature_canonicalization_method": "http://www.w3.org/2001/10/xml-exc-c14n#"
+    },
+    "authenticationFlowBindingOverrides": {},
+    "fullScopeAllowed": false,
+    "nodeReRegistrationTimeout": -1,
+    "protocolMappers": [
+        {
+            "name": "Sesison Role",
+            "protocol": "saml",
+            "protocolMapper": "saml-role-list-mapper",
+            "consentRequired": false,
+            "config": {
+                "single": "true",
+                "attribute.nameformat": "Basic",
+                "friendly.name": "Session Role",
+                "attribute.name": "https://aws.amazon.com/SAML/Attributes/Role"
+            }
+        },
+        {
+            "name": "Session Name",
+            "protocol": "saml",
+            "protocolMapper": "saml-user-property-mapper",
+            "consentRequired": false,
+            "config": {
+                "attribute.nameformat": "Basic",
+                "user.attribute": "username",
+                "friendly.name": "Session Name",
+                "attribute.name": "https://aws.amazon.com/SAML/Attributes/RoleSessionName"
+            }
+        },
+        {
+            "name": "Session Duration",
+            "protocol": "saml",
+            "protocolMapper": "saml-hardcode-attribute-mapper",
+            "consentRequired": false,
+            "config": {
+                "attribute.value": "28800",
+                "attribute.nameformat": "Basic",
+                "friendly.name": "Session Duration",
+                "attribute.name": "https://aws.amazon.com/SAML/Attributes/SessionDuration"
+            }
+        }
+    ],
+    "defaultClientScopes": [
+        "role_list",
+        "profile",
+        "email"
+    ],
+    "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access"
+    ],
+    "access": {
+        "view": true,
+        "configure": true,
+        "manage": true
+    }
+}
